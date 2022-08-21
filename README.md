@@ -7,7 +7,7 @@ This is a project to translate assembly code to machine code in the Hack system.
 The project is implemented using Common Lisp (SBCL). The only external package I used is uiop, you can install it through quicklisp:
 
 ```lisp
-(ql-quickload :uiop)
+(ql:quickload :uiop)
 ```
 
 ## Usage
