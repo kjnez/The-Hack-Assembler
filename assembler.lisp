@@ -91,7 +91,7 @@
   (let ((lines (uiop:read-file-lines file)))
     (mapcar #'remove-comment
 	    (remove-if
-	     #'(lambda (str) (or (string= "" str) (string= (elt str 0) "/")))
+	     #'(lambda (str) (or (string= "" str) (string= (char str 0) "/")))
 	     lines))))
 
 (defun write-file (binary-list filename)
@@ -101,15 +101,15 @@
 
 (defun command-type (command)
   "Returns A-COMMAND, C-COMMAND or L-COMMAND."
-  (cond ((string= (elt command 0) "@")
+  (cond ((string= (char command 0) "@")
 	 'A-COMMAND)
-	((string= (elt command 0) "(")
+	((string= (char command 0) "(")
 	 'L-COMMAND)
 	(t 'C-COMMAND)))
 
 (defun get-symbol (command)
   "Return the symbol or decimal Xxx of the current command @Xxx or (Xxx). Should be called only when command-type is A-COMMAND or L-COMMAND"
-  (if (string= (elt command 0) "@")
+  (if (string= (char command 0) "@")
       (subseq command 1)
       (subseq command 1 (1- (length command)))))
 
